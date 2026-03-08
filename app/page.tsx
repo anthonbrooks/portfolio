@@ -1,65 +1,141 @@
-import Image from "next/image";
+"use client";
+import { useState } from "react";
+import Polaroid from "../components/Polaroid";
+import GalleryPost from "../components/GalleryPost";
+import { photos } from "./data/photos";
+import Navbar from "../components/Navbar";
 
 export default function Home() {
+  const [activeIndex, setActiveIndex] = useState(null);
+  const openPost = (idx) => setActiveIndex(idx);
+  const closePost = () => setActiveIndex(null);
+
+  const current = activeIndex != null ? photos[activeIndex] : null;
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <>
+      <Navbar />
+      <main className="min-h-screen px-4 py-8 pt-20">
+        <header className="max-w-7xl mx-auto mb-8">
+          <h1 className="text-4xl font-bold mb-2">Hello, I’m [Your Name]</h1>
+          <p className="text-gray-600">
+            A visual storyteller exploring light, color, and ideas.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center bg-amber-500 justify-center gap-2 rounded-full px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+        </header>
+
+        <section
+          aria-label="Polaroid gallery"
+          className="max-w-7xl mx-auto mb-12"
+        >
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+            {photos.map((p, idx) => (
+              <Polaroid
+                key={p.id}
+                src={p.image}
+                title={p.title}
+                onClick={() => openPost(idx)}
+              />
+            ))}
+          </div>
+        </section>
+
+        <section id="skills" className="max-w-7xl mx-auto mb-12 px-2">
+          <h2 className="text-2xl font-semibold mb-4">Skills</h2>
+          <ul className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            {[
+              { name: "React", level: 90 },
+              { name: "Next.js", level: 85 },
+              { name: "Tailwind CSS", level: 85 },
+              { name: "UI/UX Design", level: 80 },
+              { name: "CSS Animations", level: 75 },
+              { name: "Web Accessibility", level: 70 },
+            ].map((s) => (
+              <li key={s.name} className="bg-white rounded-lg p-4 shadow">
+                <div className="flex items-center justify-between mb-2">
+                  <span>{s.name}</span>
+                  <span className="text-sm text-gray-500">{s.level}%</span>
+                </div>
+                <div className="w-full h-2 bg-gray-200 rounded">
+                  <div
+                    className="h-2 bg-blue-500"
+                    style={{ width: `${s.level}%` }}
+                  />
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section id="blog" className="max-w-7xl mx-auto mb-12 px-2">
+          <h2 className="text-2xl font-semibold mb-4">Blog</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
+              {
+                title: "Starting the journey",
+                excerpt: "Documenting the first steps and learnings...",
+                slug: "start",
+              },
+              {
+                title: "Design decisions",
+                excerpt: "How I approached layout and typography...",
+                slug: "design-decisions",
+              },
+            ].map((b) => (
+              <article key={b.slug} className="border rounded-lg p-4 shadow">
+                <h3 className="font-semibold">{b.title}</h3>
+                <p className="text-sm text-gray-600 mt-1">{b.excerpt}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="contact" className="max-w-7xl mx-auto mb-12 px-2">
+          <h2 className="text-2xl font-semibold mb-4">Contact</h2>
+          <p className="text-gray-700 mb-4">
+            Let’s collaborate! Reach me at: email@example.com
+          </p>
+          <form
+            className="grid grid-cols-1 md:grid-cols-2 gap-4"
+            onSubmit={(e) => {
+              e.preventDefault();
+              alert("Thanks for reaching out! (demo form)");
+            }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+            <input
+              className="p-3 border rounded"
+              placeholder="Your name"
+              required
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+            <input
+              className="p-3 border rounded"
+              placeholder="Your email"
+              type="email"
+              required
+            />
+            <textarea
+              className="p-3 border rounded md:col-span-2"
+              placeholder="Your message"
+              rows={4}
+              required
+            />
+            <button
+              type="submit"
+              className="md:col-span-2 bg-blue-600 text-white p-3 rounded"
+            >
+              Send Message
+            </button>
+          </form>
+        </section>
       </main>
-    </div>
+
+      <GalleryPost
+        post={current}
+        onClose={closePost}
+        onPrev={() => setActiveIndex((i) => (i > 0 ? i - 1 : i))}
+        onNext={() =>
+          setActiveIndex((i) => (i < photos.length - 1 ? i + 1 : i))
+        }
+      />
+    </>
   );
 }
