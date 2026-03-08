@@ -5,19 +5,38 @@ import GalleryPost from "../components/GalleryPost";
 import { photos } from "./data/photos";
 import Navbar from "../components/Navbar";
 
-export default function Home() {
-  const [activeIndex, setActiveIndex] = useState(null);
-  const openPost = (idx) => setActiveIndex(idx);
-  const closePost = () => setActiveIndex(null);
+export interface Photo {
+  id: string;
+  image: string;
+  title: string;
+  description: string;
+}
 
-  const current = activeIndex != null ? photos[activeIndex] : null;
+interface Skill {
+  name: string;
+  level: number;
+}
+
+interface BlogPost {
+  title: string;
+  excerpt: string;
+  slug: string;
+}
+
+export default function Home() {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const openPost = (idx: number): void => setActiveIndex(idx);
+  const closePost = (): void => setActiveIndex(null);
+
+  const current: Photo | null =
+    activeIndex != null ? (photos as Photo[])[activeIndex] : null;
 
   return (
     <>
       <Navbar />
       <main className="min-h-screen px-4 py-8 pt-20">
         <header className="max-w-7xl mx-auto mb-8">
-          <h1 className="text-4xl font-bold mb-2">Hello, I’m [Your Name]</h1>
+          <h1 className="text-4xl font-bold mb-2">Hello, I’m Anthony</h1>
           <p className="text-gray-600">
             A visual storyteller exploring light, color, and ideas.
           </p>
@@ -131,9 +150,11 @@ export default function Home() {
       <GalleryPost
         post={current}
         onClose={closePost}
-        onPrev={() => setActiveIndex((i) => (i > 0 ? i - 1 : i))}
+        onPrev={() => setActiveIndex((i) => (i !== null && i > 0 ? i - 1 : i))}
         onNext={() =>
-          setActiveIndex((i) => (i < photos.length - 1 ? i + 1 : i))
+          setActiveIndex((i) =>
+            i !== null && i < photos.length - 1 ? i + 1 : i,
+          )
         }
       />
     </>

@@ -17,7 +17,7 @@ export default function Polaroid({
         className="w-full h-full bg-cover bg-center"
         style={{ backgroundImage: `url(${src})` }}
       />
-      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent text-white text-sm p-2">
+      <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/70 to-transparent text-white text-sm p-2">
         {title}
       </div>
       {/* subtle glow accent */}

@@ -1,4 +1,12 @@
 import { useEffect } from "react";
+import { Photo } from "@/app/page";
+
+interface GalleryPostProps {
+  post: Photo | null;
+  onClose: () => void;
+  onNext: () => void;
+  onPrev: () => void;
+}
 
 export default function GalleryPost({
   post,
@@ -6,15 +14,15 @@ export default function GalleryPost({
   onNext,
   onPrev,
 }: {
-  post: string;
-  onClose: React.MouseEventHandler<HTMLButtonElement>;
-  onNext: React.MouseEventHandler<HTMLButtonElement>;
-  onPrev: React.MouseEventHandler<HTMLButtonElement>;
+  post: Photo | null;
+  onClose: () => void;
+  onNext: () => void;
+  onPrev: () => void;
 }) {
   // close on Escape
   useEffect(() => {
     if (!post) return;
-    const onKey = (e) => {
+    const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose?.();
     };
     window.addEventListener("keydown", onKey);
