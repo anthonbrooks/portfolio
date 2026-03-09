@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import { sendEmail } from "@/app/actions/sendEmail";
 import Link from "next/link";
+import Image from "next/image";
 
 export interface Photo {
   id: string;
@@ -66,12 +67,10 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen px-4 py-8 pt-20">
+      <main className="min-h-screen px-4 py-8">
         <header className="max-w-7xl mx-auto mb-8">
           <h1 className="text-4xl font-bold mb-2">Hello, I’m Anthony</h1>
-          <p className="text-gray-600">
-            A visual storyteller exploring light, color, and ideas.
-          </p>
+          <p className="text-gray-600">Web developer. Storyteller.</p>
         </header>
 
         <motion.section
