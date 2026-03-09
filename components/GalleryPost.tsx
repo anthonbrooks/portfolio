@@ -37,8 +37,12 @@ export default function GalleryPost({
       className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4"
       role="dialog"
       aria-label="Post viewer"
+      onClick={onClose}
     >
-      <div className="bg-white rounded-2xl shadow-xl max-w-5xl w-full overflow-hidden flex flex-col md:flex-row">
+      <div
+        className="bg-white rounded-2xl shadow-xl max-w-5xl w-full overflow-hidden flex flex-col md:flex-row"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="w-full md:flex-1 bg-black h-64 md:h-auto">
           <img
             src={post.image}
@@ -72,7 +76,7 @@ export default function GalleryPost({
             </button>
             <button
               onClick={onClose}
-              className="ml-auto px-3 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+              className="ml-auto px-3 py-2 bg-red-600 text-white rounded hover:bg-red-700"
               aria-label="Close"
             >
               Close

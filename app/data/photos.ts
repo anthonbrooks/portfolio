@@ -26,7 +26,7 @@ export const photos: Photo[] = [
   },
   {
     id: "p4",
-    image: "/images/calculator-screenshot.png",
+    image: "/images/calculator-demo.png",
     title: "Calculator",
     description: "A calculator made with Vanilla JavaScript, HTML, and CSS.",
     link: "https://anthonbrooks.github.io/calculator/",
