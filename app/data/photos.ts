@@ -6,7 +6,7 @@ export const photos: Photo[] = [
     image: "/images/amber-wisteria_landing.png",
     title: "Amber Wisteria",
     description:
-      "A meal delivery app for sick and bedridden patients created with Django, React, TailwindCSS. Designed in Figma. Users can request a meal or create a meal train for someone in need. (Use credentials username: test password: Testpass1)",
+      "A meal delivery app for sick and bedridden patients created with Django, React, TailwindCSS. Designed in Figma. Users can request a meal or create a meal train for someone in need. (For the demo use credentials username: test password: Testpass1 or create a new account.)",
     link: "https://amber-wisteria.vercel.app/",
   },
   {
