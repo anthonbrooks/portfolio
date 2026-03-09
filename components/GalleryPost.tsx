@@ -38,8 +38,8 @@ export default function GalleryPost({
       role="dialog"
       aria-label="Post viewer"
     >
-      <div className="bg-white rounded-2xl shadow-xl max-w-5xl w-full overflow-hidden flex">
-        <div className="flex-1 bg-black" style={{ minHeight: 320 }}>
+      <div className="bg-white rounded-2xl shadow-xl max-w-5xl w-full overflow-hidden flex flex-col md:flex-row">
+        <div className="w-full md:flex-1 bg-black h-64 md:h-auto">
           <img
             src={post.image}
             alt={post.title}
