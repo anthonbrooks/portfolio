@@ -60,8 +60,22 @@ export default function Home() {
     },
   ];
 
-  const handleSubmit = (): void => {
-    setSent(true);
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+
+    try {
+      const result = await sendEmail(formData);
+
+      if (result.success) {
+        setSent(true);
+      } else {
+        console.error("something went wrong");
+      }
+    } catch (err: any) {
+      console.error(err);
+    }
   };
 
   return (
@@ -165,7 +179,6 @@ export default function Home() {
             </motion.div>
           ) : (
             <form
-              action={sendEmail}
               onSubmit={handleSubmit}
               className="grid grid-cols-1 md:grid-cols-2 gap-4"
             >
