@@ -7,9 +7,9 @@ export default function Navbar() {
           My Portfolio
         </Link>
         <div className="flex gap-4">
-          <Link href="/blog" className="text-sm hover:underline">
+          {/* <Link href="/blog" className="text-sm hover:underline">
             Blog
-          </Link>
+          </Link> */}
           <a href="#skills" className="text-sm hover:underline">
             Skills
           </a>
