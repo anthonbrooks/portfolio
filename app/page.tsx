@@ -3,7 +3,9 @@ import { useState } from "react";
 import Polaroid from "../components/Polaroid";
 import GalleryPost from "../components/GalleryPost";
 import { photos } from "./data/photos";
+import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
+import { sendEmail } from "@/app/actions/sendEmail";
 
 export interface Photo {
   id: string;
@@ -26,11 +28,39 @@ interface BlogPost {
 
 export default function Home() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [sent, setSent] = useState(false);
   const openPost = (idx: number): void => setActiveIndex(idx);
   const closePost = (): void => setActiveIndex(null);
 
   const current: Photo | null =
     activeIndex != null ? (photos as Photo[])[activeIndex] : null;
+
+  const skills: Skill[] = [
+    { name: "React", level: 90 },
+    { name: "Next.js", level: 85 },
+    { name: "Tailwind CSS", level: 85 },
+    { name: "UI/UX Design", level: 80 },
+    { name: "CSS Animations", level: 75 },
+    { name: "Web Accessibility", level: 70 },
+  ];
+
+  const blogPosts: BlogPost[] = [
+    {
+      title: "Starting the journey",
+      excerpt: "Documenting the first steps and learnings...",
+      slug: "start",
+    },
+    {
+      title: "Design decisions",
+      excerpt: "How I approached layout and typography...",
+      slug: "design-decisions",
+    },
+  ];
+
+  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    setSent(true);
+  };
 
   return (
     <>
@@ -43,10 +73,15 @@ export default function Home() {
           </p>
         </header>
 
-        <section
+        <motion.section
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
           aria-label="Polaroid gallery"
           className="max-w-7xl mx-auto mb-12"
         >
+          <h2 className="font-bold">Snapshots of my work</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
             {photos.map((p, idx) => (
               <Polaroid
@@ -57,19 +92,19 @@ export default function Home() {
               />
             ))}
           </div>
-        </section>
+        </motion.section>
 
-        <section id="skills" className="max-w-7xl mx-auto mb-12 px-2">
+        <motion.section
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          id="skills"
+          className="max-w-7xl mx-auto mb-12 px-2"
+        >
           <h2 className="text-2xl font-semibold mb-4">Skills</h2>
           <ul className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            {[
-              { name: "React", level: 90 },
-              { name: "Next.js", level: 85 },
-              { name: "Tailwind CSS", level: 85 },
-              { name: "UI/UX Design", level: 80 },
-              { name: "CSS Animations", level: 75 },
-              { name: "Web Accessibility", level: 70 },
-            ].map((s) => (
+            {skills.map((s) => (
               <li key={s.name} className="bg-white rounded-lg p-4 shadow">
                 <div className="flex items-center justify-between mb-2">
                   <span>{s.name}</span>
@@ -84,68 +119,86 @@ export default function Home() {
               </li>
             ))}
           </ul>
-        </section>
+        </motion.section>
 
-        <section id="blog" className="max-w-7xl mx-auto mb-12 px-2">
+        <motion.section
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          id="blog"
+          className="max-w-7xl mx-auto mb-12 px-2"
+        >
           <h2 className="text-2xl font-semibold mb-4">Blog</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[
-              {
-                title: "Starting the journey",
-                excerpt: "Documenting the first steps and learnings...",
-                slug: "start",
-              },
-              {
-                title: "Design decisions",
-                excerpt: "How I approached layout and typography...",
-                slug: "design-decisions",
-              },
-            ].map((b) => (
+            {blogPosts.map((b) => (
               <article key={b.slug} className="border rounded-lg p-4 shadow">
                 <h3 className="font-semibold">{b.title}</h3>
                 <p className="text-sm text-gray-600 mt-1">{b.excerpt}</p>
               </article>
             ))}
           </div>
-        </section>
+        </motion.section>
 
-        <section id="contact" className="max-w-7xl mx-auto mb-12 px-2">
+        <motion.section
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          id="contact"
+          className="max-w-7xl mx-auto mb-12 px-2"
+        >
           <h2 className="text-2xl font-semibold mb-4">Contact</h2>
           <p className="text-gray-700 mb-4">
-            Let’s collaborate! Reach me at: email@example.com
+            Let’s collaborate! Send me your project details.
           </p>
-          <form
-            className="grid grid-cols-1 md:grid-cols-2 gap-4"
-            onSubmit={(e) => {
-              e.preventDefault();
-              alert("Thanks for reaching out! (demo form)");
-            }}
-          >
-            <input
-              className="p-3 border rounded"
-              placeholder="Your name"
-              required
-            />
-            <input
-              className="p-3 border rounded"
-              placeholder="Your email"
-              type="email"
-              required
-            />
-            <textarea
-              className="p-3 border rounded md:col-span-2"
-              placeholder="Your message"
-              rows={4}
-              required
-            />
-            <button
-              type="submit"
-              className="md:col-span-2 bg-blue-600 text-white p-3 rounded"
+          {sent ? (
+            <motion.div
+              className="text-center p-10"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
             >
-              Send Message
-            </button>
-          </form>
-        </section>
+              <p className="text-2xl font-semibold">Message sent ⌯⌲</p>
+              <p className="text-gray-600 mt-2">
+                Thanks for reaching out! I'll reply soon.
+              </p>
+            </motion.div>
+          ) : (
+            <form
+              action={sendEmail}
+              onSubmit={handleSubmit}
+              className="grid grid-cols-1 md:grid-cols-2 gap-4"
+            >
+              <input type="text" name="company" className="hidden" />
+              <input
+                name="name"
+                className="p-3 border rounded"
+                placeholder="Your name"
+                required
+              />
+              <input
+                name="email"
+                type="email"
+                className="p-3 border rounded"
+                placeholder="Your email"
+                required
+              />
+              <textarea
+                name="message"
+                className="p-3 border rounded md:col-span-2"
+                placeholder="Your message"
+                rows={4}
+                required
+              />
+              <button
+                type="submit"
+                className="md:col-span-2 bg-blue-600 text-white p-3 rounded hover:cursor-pointer"
+              >
+                Send Message
+              </button>
+            </form>
+          )}
+        </motion.section>
       </main>
 
       <GalleryPost

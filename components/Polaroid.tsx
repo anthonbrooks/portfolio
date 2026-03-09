@@ -11,7 +11,7 @@ export default function Polaroid({
     <button
       aria-label={title}
       onClick={onClick}
-      className="relative m-2 w-44 h-60 rounded-xl overflow-hidden shadow-lg bg-white transition-transform transform hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+      className="relative m-2 w-44 h-60 rounded-xl overflow-hidden shadow-lg bg-white transition-transform transform hover:scale-105 hover:shadow-2xl hover:rotate-1 active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-500"
     >
       <div
         className="w-full h-full bg-cover bg-center"
