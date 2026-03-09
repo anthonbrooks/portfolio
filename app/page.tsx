@@ -43,6 +43,7 @@ export default function Home() {
     { name: "UI/UX Design", level: 80 },
     { name: "CSS Animations", level: 75 },
     { name: "Web Accessibility", level: 70 },
+    { name: "Python", level: 85 },
   ];
 
   const blogPosts: BlogPost[] = [
