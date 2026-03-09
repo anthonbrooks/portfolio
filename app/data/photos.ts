@@ -7,7 +7,7 @@ export const photos: Photo[] = [
     title: "Amber Wisteria",
     description:
       "A meal delivery app for sick and bedridden patients created with Django, React, TailwindCSS. Users can request a meal or create a meal train for someone in need.",
-    link: "",
+    link: "https://amber-wisteria.vercel.app/",
   },
   {
     id: "p2",
