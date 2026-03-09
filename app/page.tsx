@@ -10,6 +10,7 @@ export interface Photo {
   image: string;
   title: string;
   description: string;
+  link: string;
 }
 
 interface Skill {

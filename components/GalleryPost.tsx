@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Photo } from "@/app/page";
+import Link from "next/link";
 
 interface GalleryPostProps {
   post: Photo | null;
@@ -47,7 +48,13 @@ export default function GalleryPost({
         </div>
         <div className="flex-1 p-6 overflow-auto">
           <h3 className="text-2xl font-semibold mb-2">{post.title}</h3>
-          <p className="text-gray-700">{post.description}</p>
+          <p className="text-gray-700 mb-5">{post.description}</p>
+          <span>
+            <p>You can try the app out here:</p>
+            <Link href={post.link} className="font-bold">
+              Demo
+            </Link>
+          </span>
           <div className="mt-6 flex gap-2">
             <button
               onClick={onPrev}

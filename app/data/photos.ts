@@ -3,27 +3,33 @@ import { Photo } from "../page";
 export const photos: Photo[] = [
   {
     id: "p1",
-    image: "/images/photo-1568904612668-f074e821e838.avif",
-    title: "Sunlit Studio",
-    description: "A quiet moment in the studio exploring light and shadows.",
+    image: "/images/amber-wisteria_landing.png",
+    title: "Amber Wisteria",
+    description:
+      "A meal delivery app for sick and bedridden patients created with Django, React, TailwindCSS. Users can request a meal or create a meal train for someone in need.",
+    link: "",
   },
   {
     id: "p2",
-    image: "/images/photo-1763839361290-4d711e42ab5f.avif",
-    title: "Color Field",
-    description: "A study in saturated color and bold composition.",
+    image: "/images/phonebook-app.png",
+    title: "Phonebook App",
+    description:
+      "A phonebook app that allows you to store contact information, search, and edit contacts. For this project I used Vite, React, TailwindCSS, JSON-Server.",
+    link: "https://phonebook-cyan.vercel.app/",
   },
   {
     id: "p3",
-    image: "/images/photo-1768808520785-a4ce8c12c335.avif",
-    title: "Motion Blur",
-    description: "Capturing movement and energy in a single frame.",
+    image: "/images/node-blog-demo.png",
+    title: "Blog",
+    description: "A blog created with Node and Express.",
+    link: "",
   },
   {
     id: "p4",
-    image: "/images/photo-1768808852353-b4bb824c1f9e.avif",
-    title: "Soft Focus",
-    description: "Dreamy tones and gentle gradients.",
+    image: "/images/calculator-screenshot.png",
+    title: "Calculator",
+    description: "A calculator made with Vanilla JavaScript, HTML, and CSS.",
+    link: "https://anthonbrooks.github.io/calculator/",
   },
   // add more as needed
 ];
