@@ -3,6 +3,7 @@
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+const email = process.env.EMAIL_ADDR;
 
 export async function sendEmail(formData: FormData) {
   const name = formData.get("name") as string;
@@ -15,7 +16,7 @@ export async function sendEmail(formData: FormData) {
 
   await resend.emails.send({
     from: "Portfolio <onboarding@resend.dev>",
-    to: "anthonybrooks226@gmail.com",
+    to: email,
     subject: `Portfolio message from ${name}`,
     replyTo: email,
     text: message,
