@@ -12,7 +12,7 @@ export const photos: Photo[] = [
   {
     id: "p2",
     image: "/images/phonebook-app.png",
-    title: "Phonebook App",
+    title: "Phonebook",
     description:
       "A phonebook app that allows you to store contact information, search, and edit contacts. For this project I used Vite, React, TailwindCSS, JSON-Server.",
     link: "https://phonebook-cyan.vercel.app/",

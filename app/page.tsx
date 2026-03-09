@@ -80,10 +80,10 @@ export default function Home() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
           aria-label="Polaroid gallery"
-          className="max-w-7xl mx-auto mb-12"
+          className="max-w-7xl mx-auto mb-12 overflow-visible"
         >
           <h2 className="font-bold">Snapshots of my work</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 relative">
             {photos.map((p, idx) => (
               <Polaroid
                 key={p.id}

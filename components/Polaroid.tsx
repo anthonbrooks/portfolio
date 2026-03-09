@@ -1,3 +1,10 @@
+import { Patrick_Hand } from "next/font/google";
+
+const patHand = Patrick_Hand({
+  subsets: ["latin"],
+  weight: ["400"],
+});
+
 export default function Polaroid({
   src,
   title,
@@ -11,15 +18,16 @@ export default function Polaroid({
     <button
       aria-label={title}
       onClick={onClick}
-      className="relative m-2 w-44 h-60 rounded-xl overflow-hidden shadow-lg bg-white transition-transform transform hover:scale-105 hover:shadow-2xl hover:rotate-1 active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      className={`relative m-2 w-44 h-60 p-3 pb-10 border-white rounded-xl overflow-hidden shadow-lg bg-white transition-transform transform hover:scale-105 hover:shadow-2xl hover:rotate-1 hover:z-20 hover:-translate-y-2 active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-500`}
     >
-      <div
-        className="w-full h-full bg-cover bg-center"
-        style={{ backgroundImage: `url(${src})` }}
-      />
-      <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/70 to-transparent text-white text-sm p-2">
-        {title}
+      <div className="relative aspect-square overflow-hidden">
+        <img src={src} alt={title} className="w-full h-full object-cover" />
       </div>
+      <p
+        className={`absolute ${patHand.className} bottom-0 left-0 right-0 text-black text-2xl p-2`}
+      >
+        {title}
+      </p>
       {/* subtle glow accent */}
       <span
         aria-hidden="true"
