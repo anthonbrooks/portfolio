@@ -1,17 +1,19 @@
-"use server";
-
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function sendEmail(formData: FormData) {
+export async function POST(req: Request) {
   try {
+    const formData = await req.formData();
     const name = formData.get("name") as string;
     const email = formData.get("email") as string;
     const message = formData.get("message") as string;
 
     if (!name || !email || !message) {
-      throw new Error("Missing fields");
+      return Response.json(
+        { error: "Missing required fields" },
+        { status: 400 },
+      );
     }
 
     await resend.emails.send({
@@ -21,9 +23,9 @@ export async function sendEmail(formData: FormData) {
       replyTo: email,
       text: message,
     });
-    return { success: true };
+    return Response.json({ success: true });
   } catch (err: any) {
     console.error("sendEmail error:", err);
-    return { success: false, error: err.message || "Unknown error" };
+    return Response.json({ error: "Failed to send message" }, { status: 500 });
   }
 }

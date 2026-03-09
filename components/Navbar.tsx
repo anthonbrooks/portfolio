@@ -10,12 +10,9 @@ export default function Navbar() {
           {/* <Link href="/blog" className="text-sm hover:underline">
             Blog
           </Link> */}
-          <a href="#skills" className="text-sm hover:underline">
-            Skills
-          </a>
-          <a href="#contact" className="text-sm hover:underline">
+          <Link href="/contact" className="text-sm hover:underline">
             Contact
-          </a>
+          </Link>
         </div>
       </div>
     </nav>
