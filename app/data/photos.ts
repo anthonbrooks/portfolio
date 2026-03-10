@@ -21,7 +21,7 @@ export const photos: Photo[] = [
     id: "p3",
     image: "/images/node-blog-demo.png",
     title: "Blog",
-    description: "A blog created with Node and Express.",
+    description: "A blog created with Node, Express, MongoDB Atlas.",
     link: "",
   },
   {

@@ -1,6 +1,12 @@
 import { useEffect, useRef } from "react";
 import { Photo } from "@/app/page";
-import { motion, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useMotionValue,
+  useTransform,
+  animate,
+} from "framer-motion";
 import Link from "next/link";
 
 interface GalleryPostProps {
@@ -17,6 +23,9 @@ export default function GalleryPost({
   onPrev,
 }: GalleryPostProps) {
   const cardRef = useRef<HTMLDivElement>(null);
+
+  const x = useMotionValue(0);
+  const rotate = useTransform(x, [-200, 200], [-8, 8]);
 
   // close on Escape
   useEffect(() => {
@@ -53,10 +62,38 @@ export default function GalleryPost({
           <motion.div
             className="bg-white rounded-2xl shadow-xl max-w-5xl w-full overflow-hidden flex flex-col md:flex-row"
             ref={cardRef}
+            key={post.id}
             initial={{ scale: 0.9, y: 40 }}
             animate={{ scale: 1, y: 0 }}
             exit={{ scale: 0.9, y: 40 }}
             transition={{ duration: 0.25 }}
+            style={{ x, rotate }}
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.4}
+            whileDrag={{ scale: 0.9 }}
+            dragSnapToOrigin
+            dragDirectionLock
+            onDragEnd={(e, { offset, velocity }) => {
+              const swipePower = (offset: number, velocity: number) => {
+                return Math.abs(offset) * velocity;
+              };
+
+              const swipe = swipePower(offset.x, velocity.x);
+              const threshold = 10000;
+
+              if (swipe < -threshold) {
+                animate(x, -500, { duration: 0.2 }).then(() => {
+                  x.set(0);
+                  onNext();
+                }); // swipe left
+              } else if (swipe > threshold) {
+                animate(x, 500, { duration: 0.2 }).then(() => {
+                  x.set(0);
+                  onPrev();
+                }); // swipe right
+              }
+            }}
           >
             <div className="w-full md:flex-1 bg-black h-64 md:h-auto">
               <img
