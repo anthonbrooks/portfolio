@@ -13,6 +13,7 @@ export interface Photo {
   title: string;
   description: string;
   link: string;
+  source: string;
 }
 
 interface Skill {
@@ -62,8 +63,8 @@ export default function Home() {
       <Navbar />
       <main className="min-h-screen px-4 py-8">
         <header className="max-w-7xl mx-auto mb-8">
-          <h1 className="text-4xl font-bold mb-2">Hello, I’m Anthony</h1>
-          <p className="text-gray-600">
+          <h1 className="text-4xl font-bold mb-2">Anthony Brooks</h1>
+          <p className="text-gray-600 dark:text-white">
             Web developer. Musician. Storyteller. Mentor.
           </p>
         </header>
@@ -73,7 +74,9 @@ export default function Home() {
           className="max-w-7xl mx-auto mb-6 overflow-visible"
         >
           <h2 className="font-bold mb-2">Snapshots of my work</h2>
-          <p className="text-gray-600">Click a project to learn more.</p>
+          <p className="text-gray-600 dark:text-white">
+            Click a project to learn more.
+          </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2 relative">
             {photos.map((p, idx) => (
               <Polaroid

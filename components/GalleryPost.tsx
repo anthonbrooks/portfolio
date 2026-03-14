@@ -102,14 +102,22 @@ export default function GalleryPost({
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
             </div>
-            <div className="flex-1 p-6 overflow-auto">
+            <div className="flex-1 p-6 overflow-auto dark:bg-[#0a0a0a]">
               <h3 className="text-2xl font-semibold mb-2">{post.title}</h3>
-              <p className="text-gray-700 mb-5">{post.description}</p>
+              <p className="text-gray-700 mb-5 dark:text-white">
+                {post.description}
+              </p>
               <span>
-                <p>You can try the app out here:</p>
-                <Link href={post.link} className="font-bold">
-                  Demo
-                </Link>
+                <p>You can check the app out here:</p>
+                <div className="flex gap-1">
+                  <Link href={post.link} className="font-bold">
+                    Demo
+                  </Link>
+                  <p>//</p>
+                  <Link href={post.source} className="font-bold">
+                    View Source
+                  </Link>
+                </div>
               </span>
               <div className="mt-6 flex gap-2">
                 <button

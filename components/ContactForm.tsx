@@ -30,14 +30,7 @@ export default function ContactForm() {
   };
 
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-      id="contact"
-      className="max-w-7xl mx-auto mb-12 px-2"
-    >
+    <div id="contact" className="max-w-7xl mx-auto mb-12 px-2">
       {sent ? (
         <motion.div
           className="text-center p-10"
@@ -45,7 +38,7 @@ export default function ContactForm() {
           animate={{ opacity: 1, scale: 1 }}
         >
           <p className="text-2xl font-semibold">Message sent ⌯⌲</p>
-          <p className="text-gray-600 mt-2">
+          <p className="text-gray-600 mt-2 dark:text-white">
             Thanks for reaching out! I'll reply soon.
           </p>
         </motion.div>
@@ -89,6 +82,6 @@ export default function ContactForm() {
           </form>
         </>
       )}
-    </motion.section>
+    </div>
   );
 }
