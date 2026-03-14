@@ -63,19 +63,18 @@ export default function Home() {
       <main className="min-h-screen px-4 py-8">
         <header className="max-w-7xl mx-auto mb-8">
           <h1 className="text-4xl font-bold mb-2">Hello, I’m Anthony</h1>
-          <p className="text-gray-600">Web developer. Storyteller.</p>
+          <p className="text-gray-600">
+            Web developer. Musician. Storyteller. Mentor.
+          </p>
         </header>
 
-        <motion.section
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+        <div
           aria-label="Polaroid gallery"
-          className="max-w-7xl mx-auto mb-12 overflow-visible"
+          className="max-w-7xl mx-auto mb-6 overflow-visible"
         >
-          <h2 className="font-bold">Snapshots of my work</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 relative">
+          <h2 className="font-bold mb-2">Snapshots of my work</h2>
+          <p className="text-gray-600">Click a project to learn more.</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 relative">
             {photos.map((p, idx) => (
               <Polaroid
                 key={p.id}
@@ -85,16 +84,9 @@ export default function Home() {
               />
             ))}
           </div>
-        </motion.section>
+        </div>
 
-        <motion.section
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          id="skills"
-          className="max-w-7xl mx-auto mb-12 px-2"
-        >
+        {/* <div id="skills" className="max-w-7xl mx-auto mb-12 px-2">
           <h2 className="text-2xl font-semibold mb-4">Skills</h2>
           <ul className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {skills.map((s) => (
@@ -112,9 +104,9 @@ export default function Home() {
               </li>
             ))}
           </ul>
-        </motion.section>
+        </div> */}
 
-        <motion.section
+        {/* <motion.section
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -131,7 +123,7 @@ export default function Home() {
               </article>
             ))}
           </div>
-        </motion.section>
+        </motion.section> */}
         <Footer />
       </main>
 

@@ -18,6 +18,10 @@
     --background: #0a0a0a;
     --foreground: #cf8222;
   }
+
+  p {
+    color: white;
+  }
 }
 
 body {
