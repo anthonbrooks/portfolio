@@ -21,11 +21,12 @@ export const photos: Photo[] = [
   },
   {
     id: "p3",
-    image: "/images/node-blog-demo.png",
-    title: "Blog",
-    description: "A blog created with Node, Express, MongoDB Atlas.",
+    image: "/images/asteroids-v1.png",
+    title: "Asteroids",
+    description:
+      "Built a 2D Asteroids-style game using Python and Pygame, implementing object-oriented architecture, sprite grouping, collision detection, and real-time physics-based movement.",
     link: "",
-    source: "https://github.com/anthonbrooks/node-blog",
+    source: "https://github.com/anthonbrooks/asteroids",
   },
   {
     id: "p4",
